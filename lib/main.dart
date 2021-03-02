@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import './questao.dart';
-
+import './resposta.dart';
 
 main() => runApp(PerguntaApp());
 
@@ -21,9 +21,19 @@ class _PerguntaAppState extends State<PerguntaApp> {
       });
     }
 
-    var _pergunta = [
-      'Cor predileta',
-      'Animal predileto',
+    final List<Map<String, Object>> _pergunta = [
+      {
+        'texto': 'Cor predileta',
+        'respostas': ['Verde', 'Vermelha', 'Azul', 'Branca'],
+      },
+      {
+        'texto': 'Animal predileto',
+        'respostas': ['Cachorro', 'Gato', 'Papagaio', 'Hamster'],
+      },
+      {
+        'texto': 'Professor predileto',
+        'respostas': ['João', 'Marcelo', 'Alvaro', 'Bianca'],
+      },
     ];
 
     return MaterialApp(
@@ -33,19 +43,10 @@ class _PerguntaAppState extends State<PerguntaApp> {
         ),
         body: Column(
           children: [
-            Questao(_pergunta[_perguntaSelecionada]),
-            RaisedButton(
-              child: Text('Pergunta 1'),
-              onPressed: _responder,
-            ),
-            RaisedButton(
-              child: Text('Pergunta 2'),
-              onPressed: _responder,
-            ),
-            RaisedButton(
-              child: Text('Pergunta 3'),
-              onPressed: _responder,
-            ),
+            Questao(_pergunta[_perguntaSelecionada]['texto']),
+            Resposta('Resposta 1', _responder),
+            Resposta('Resposta 2', _responder),
+            Resposta('Resposta 3', _responder),
           ],
         ),
       ),
