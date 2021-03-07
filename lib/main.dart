@@ -12,27 +12,44 @@ class PerguntaApp extends StatefulWidget {
 
 class _PerguntaAppState extends State<PerguntaApp> {
   var _perguntaSelecionada = 0;
-
+  var _pontuacaoTotal = 0;
   final _perguntas = const [
     {
       'texto': 'Qual sua cor predileta?',
-      'resposta': ['Verde', 'Vermelha', 'Azul', 'Amarela']
+      'resposta': [
+        {'texto': 'Verde', 'pontuacao': 10},
+        {'texto': 'Vermelha', 'pontuacao': 5},
+        {'texto': 'Azul', 'pontuacao': 3},
+        {'texto': 'Amarela', 'pontuacao': 1},
+      ]
     },
     {
       'texto': 'Qual seu animal predileto?',
-      'resposta': ['Cachorro', 'Gato', 'Arara', 'Macaco']
+      'resposta': [
+        {'texto': 'Cachorro', 'pontuacao': 10},
+        {'texto': 'Gato    ', 'pontuacao': 5},
+        {'texto': 'Arara   ', 'pontuacao': 3},
+        {'texto': 'Macaco  ', 'pontuacao': 1},
+      ]
     },
     {
       'texto': 'Qual seu professor predileto?',
-      'resposta': ['João', 'Maria', 'Pedro', 'Amélia']
+      'resposta': [
+        {'texto': 'João  ', 'pontuacao': 10},
+        {'texto': 'Maria ', 'pontuacao': 5},
+        {'texto': 'Pedro ', 'pontuacao': 3},
+        {'texto': 'Amélia', 'pontuacao':1}
+      ]
     },
   ];
-  void _responder() {
+  void _responder(int pontuacao) {
     if (temPerguntaSelecionada) {
       setState(() {
         _perguntaSelecionada++;
+        _pontuacaoTotal += pontuacao;
       });
     }
+    print(_pontuacaoTotal);
   }
 
   bool get temPerguntaSelecionada {
@@ -52,7 +69,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
                 perguntaSelecionada: _perguntaSelecionada,
                 quandoResponder: _responder,
               )
-            : Resultado(),
+            : Resultado(_pontuacaoTotal),
       ),
     );
   }
