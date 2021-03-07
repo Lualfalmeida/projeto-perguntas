@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Resposta extends StatelessWidget {
-  final String argumento;
+  final String texto;
   final void Function() quandoSelecionada;
-  Resposta(this.argumento, this.quandoSelecionada);
-
+  Resposta(this.texto, this.quandoSelecionada);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -12,9 +11,7 @@ class Resposta extends StatelessWidget {
       child: RaisedButton(
         color: Colors.blue,
         textColor: Colors.white,
-        child: Text(
-          argumento,
-        ),
+        child: Text(texto),
         onPressed: quandoSelecionada,
       ),
     );
